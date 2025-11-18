@@ -1,4 +1,7 @@
+
+-- 1 En este sector se formara el codigo principal de MYSQL para la gestion de reseñas de productos.
 CREATE TABLE reviews (
+  -- 2. DEFINIR la estructura de la tabla de reseñas
   id INT AUTO_INCREMENT PRIMARY KEY,
   producto_sku VARCHAR(255) NOT NULL,
   usuario_id VARCHAR(255) NOT NULL,
