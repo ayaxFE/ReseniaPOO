@@ -85,15 +85,16 @@ public class ReviewController {
 
 
 }
-// info : @GetMapping es una anotación específica de Spring que se usa para manejar
-// solicitudes HTTP GET. Normalmente, se emplea para definir endpoints que obtienen datos, como 
-// la consulta de información en bases de datos o la generación de respuestas en formato JSON o XML.
-// Al igual que otras anotaciones de mapeo (@PostMapping, @PutMapping), permite establecer la ruta y los 
-//parámetros que el endpoint debe recibir. citado: https://localhorse.net/article/como-manejar-solicitudes-get-con-getmapping-en-spring-boot
+/*  info : @GetMapping es una anotación específica de Spring que se usa para manejar
+* solicitudes HTTP GET. Normalmente, se emplea para definir endpoints que obtienen datos, como 
+* la consulta de información en bases de datos o la generación de respuestas en formato JSON o XML.
+*Al igual que otras anotaciones de mapeo (@PostMapping, @PutMapping), permite establecer la ruta y los 
+* parámetros que el endpoint debe recibir. citado: https://localhorse.net/article/como-manejar-solicitudes-get-con-getmapping-en-spring-boot
 
-//@PostMapping es una anotación específica de Spring utilizada para mapear solicitudes HTTP POST en métodos 
-//de un controlador. Esta anotación simplifica la configuración de rutas y es útil para operaciones que
-// implican la creación o el envío de datos desde el cliente al servidor. A diferencia de @GetMapping, 
-//que se usa para recuperar información, @PostMapping suele utilizarse cuando se envían datos para ser 
-//procesados, como por ejemplo el envío de formularios, la creación de registros en bases de datos, o para
-// recibir datos en formato JSON. citado : https://localhorse.net/article/como-manejar-solicitudes-post-con-postmapping-en-spring-boot
+*@PostMapping es una anotación específica de Spring utilizada para mapear solicitudes HTTP POST en métodos 
+*de un controlador. Esta anotación simplifica la configuración de rutas y es útil para operaciones que
+* implican la creación o el envío de datos desde el cliente al servidor. A diferencia de @GetMapping, 
+*que se usa para recuperar información, @PostMapping suele utilizarse cuando se envían datos para ser 
+*procesados, como por ejemplo el envío de formularios, la creación de registros en bases de datos, o para
+* recibir datos en formato JSON. citado : https://localhorse.net/article/como-manejar-solicitudes-post-con-postmapping-en-spring-boot
+*/
