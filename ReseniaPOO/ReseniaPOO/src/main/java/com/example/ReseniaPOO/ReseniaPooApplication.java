@@ -11,3 +11,4 @@ public class ReseniaPooApplication {
 	}
 
 }
+// aca esta el codigo principal para iniciar la aplicacion spring boot
