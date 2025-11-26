@@ -23,7 +23,7 @@ public class ReviewService {
     /**
      * Lógica para 7.1 Crear Reseña
      */
-    public Review createReview(ReviewInputDTO reviewInput) {
+    public Review createReview (ReviewInputDTO reviewInput) {
         /** 
          Validación Anti-spam (Código 409 duplicada) sirve para evitar que un mismo usuario
          envíe múltiples reseñas para el mismo producto
@@ -45,13 +45,16 @@ public class ReviewService {
     /**
      * Lógica para 7.2 Listar Reseñas
      *  aca podemos obtener las reseñas de un producto específico, con opción de filtrar por rating mínimo y paginación 
+     * Obtener reseñas de un producto específico con filtros y paginación
      */
     public List<Review> getReviews(String sku, Integer minRating, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
 
         if (minRating != null) {
+            // Busca por SKU y Rating mínimo
             return reviewRepository.findByProductoSkuAndRatingGreaterThanEqualOrderByCreatedAtDesc(sku, minRating, pageable);
         } else {
+            // Busca solo por SKU
             return reviewRepository.findByProductoSkuOrderByCreatedAtDesc(sku, pageable);
         }
     }
@@ -59,27 +62,34 @@ public class ReviewService {
     /**
      * Lógica para 7.3 Rating Promedio
      * desde este apartado podemos obtener el rating promedio y la cantidad de reseñas para un producto específico
+     * Obtener rating promedio y cantidad de reseñas
      */
     public RatingResponseDTO getAverageRating(String sku) {
+        // Obtiene el promedio usando la Query personalizada del repositorio
         Double promedio = reviewRepository.getAverageRatingByProductoSku(sku);
-        long cantidad = reviewRepository.countByProductoSku(sku);
         
+        // Cuenta el total de reseñas
+        long cantidad = reviewRepository.countByProductoSku(sku);
+
         if (promedio == null) {
             promedio = 0.0;
         }
-        
+
+        // Constructor de DTO coincidencia con estos parámetros
         return new RatingResponseDTO(sku, promedio, cantidad);
     }
 
     /**
      * Lógica para 7.4 Eliminar Reseña
      * desde este apartado podemos eliminar una reseña por su ID 
+     * Eliminar reseña por ID
      */
     public void deleteReview(Integer id) {
         if (!reviewRepository.existsById(id)) {
-            // Código 404 en caso de que la reseña no exista en el sistema
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reseña no encontrada con ID: " + id);
         }
         reviewRepository.deleteById(id);
     }
+
+
 }
