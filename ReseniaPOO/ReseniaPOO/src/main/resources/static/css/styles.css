@@ -1,0 +1,37 @@
+/* Estilos Globales y Diseño 
+STYLESHEET: RESEÑAS
+*/
+
+
+body {
+
+/* 
+    font-family: Define la fuente primaria.
+    background-color: Fondo de contraste de color #f4f4f9.
+    padding: Mejora la legibilidad del texto.
+*/
+
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+
+/*
+    max-width: Limita el ancho del contenido para mejorar la Lectura
+    margin: Centra el contenedor en la Página
+    border-radius: Implementa bordes redondeados
+    box-shadow: Implementa sombra para dar profundidad
+*/
+
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 0.1);
+}

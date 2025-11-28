@@ -183,15 +183,14 @@ async function deleteReview(reviewId) {
 }
 
 // Actualizar paginación
-function updatePagination() {
+function updatePagination(response) {
+    // Si la API devuelve un objeto de paginación
+    const isLastPage = response.isLast || false;
+
     pagination.innerHTML = `
-        <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 0 ? 'disabled' : ''}>
-            Anterior
-        </button>
+        <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 0 ? 'disabled' : ''}>Anterior</button>
         <span>Página ${currentPage + 1}</span>
-        <button class="page-btn" onclick="changePage(${currentPage + 1})">
-            Siguiente
-        </button>
+        <button class="page-btn" onclick="changePage(${currentPage + 1})" ${isLastPage ? 'disabled' : ''}>Siguiente</button>
     `;
 }
 
