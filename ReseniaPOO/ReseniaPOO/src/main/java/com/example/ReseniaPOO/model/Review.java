@@ -1,10 +1,8 @@
 package com.example.ReseniaPOO.model;
+
 import java.sql.Timestamp;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,82 +10,83 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 // Definición de la entidad Review mapeada a la tabla "reviews" en la base de datos
-@Entity 
+@Entity
 @Table(name = "reviews")
 
 public class Review {
 
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     // inicializamos los atributos de la entidad Review
-    private Integer id; 
-    private String productoSku; 
+    private Integer id;
+    private String productoSku;
     private String usuarioId;
     private Integer rating;
-    private String comentario; 
-    
-    // anotacion para que Hibernate asigne automaticamente la fecha y hora de creacion del registro
+    private String comentario;
+
+    // anotacion para que Hibernate asigne automaticamente la fecha y hora de
+    // creacion del registro
     // CreadaEn indica la fecha de creación de la reseña
-    // es usado por Spring Data JPA para mapear el campo createdAt a la columna "createdAt" en la tabla "reviews"
+    // es usado por Spring Data JPA para mapear el campo createdAt a la columna
+    // "createdAt" en la tabla "reviews"
     @CreationTimestamp
-    @Column(updatable = false, name = "createdAt") 
+    @Column(updatable = false, name = "createdAt")
     @JsonProperty("creadaEn")
     private Timestamp createdAt;
-    
-    //constructor, getters y setters
 
-        // constructor vacio para que JPA pueda crear instancias de la entidad Review
-        public Review() {
-        }
+    // constructor, getters y setters
 
-        public Integer getId() {
-            return id; 
-        }
-        
-        public void setId(Integer id) { 
-            this.id = id; 
-        }
+    // constructor vacio para que JPA pueda crear instancias de la entidad Review
+    public Review() {
+    }
 
-        public String getProductoSku() { 
-            return productoSku; 
-        }
+    public Integer getId() {
+        return id;
+    }
 
-        public void setProductoSku(String productoSku) { 
-            this.productoSku = productoSku; 
-        }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-        public String getUsuarioId() { 
-            return usuarioId; 
-        }
+    public String getProductoSku() {
+        return productoSku;
+    }
 
-        public void setUsuarioId(String usuarioId) { 
-            this.usuarioId = usuarioId; 
-        }
-        
-        public Integer getRating() { 
-            return rating; 
-        }
+    public void setProductoSku(String productoSku) {
+        this.productoSku = productoSku;
+    }
 
-        public void setRating(Integer rating) { 
-            this.rating = rating; 
-        }
+    public String getUsuarioId() {
+        return usuarioId;
+    }
 
-        public String getComentario() { 
-            return comentario; 
-        }
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
-        public void setComentario(String comentario) { 
-            this.comentario = comentario; 
-        }
+    public Integer getRating() {
+        return rating;
+    }
 
-        public Timestamp getCreatedAt() { 
-            return createdAt; 
-        }
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
-        public void setCreatedAt(Timestamp createdAt) { 
-            this.createdAt = createdAt; 
-        }
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
 }
