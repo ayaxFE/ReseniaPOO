@@ -21,7 +21,9 @@ import com.example.ReseniaPOO.service.ReviewService;
 
 import jakarta.validation.Valid;
 
+// aca esta el controlador que maneja las peticiones HTTP
 @RestController
+// el RequestMapping define la ruta base para todas las peticiones HTTP
 @RequestMapping("/reviews")
 public class ReviewController {
 

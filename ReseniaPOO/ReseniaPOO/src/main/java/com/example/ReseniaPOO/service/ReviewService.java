@@ -77,6 +77,7 @@ public class ReviewService {
         // Cuenta el total de reseñas
         long cantidad = reviewRepository.countByProductoSku(sku);
 
+        // si el promedio es null, se le asigna 0.0 como valor por defecto
         if (promedio == null) {
             promedio = 0.0;
         }
@@ -91,9 +92,13 @@ public class ReviewService {
      * Eliminar reseña por ID
      */
     public void deleteReview(Integer id) {
+        // verifica si la reseña existe
         if (!reviewRepository.existsById(id)) {
+            // si no existe lanza una excepcion que indica que la reseña no se encontro con
+            // el id indicado
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Reseña no encontrada con ID: " + id);
         }
+        // si existe la elimina
         reviewRepository.deleteById(id);
     }
 
