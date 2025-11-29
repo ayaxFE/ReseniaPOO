@@ -6,7 +6,7 @@
     <meta charset="UTF-8"> <!-- Codificación de caracteres para soportar Español -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración Responsive Movil -->
     <title>Sistema de Reseñas - GRUPO N°3</title>
-    <link rel="stylesheet" href="stryles.css">  <!-- Archivo de Diseño CSS -->
+    <link rel="stylesheet" href="/css/styles.css">  <!-- Archivo de Diseño CSS -->
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
 
          <!-- Muestra alertas de éxito, error o inforamción -->
-        <div id="alerContainer">
+        <div id="alertContainer">
         </div>
 
         <!-- SECCIÓN: Formulario de creación de Reseñas (Captura y Envía Reseñas) -->
@@ -28,7 +28,7 @@
         <form id="reviewForm">
             <div class="form-group"> <!-- GRUPO: SKU del Producto -->
                 <label for="productSku"> SKU del Producto</label> <!-- Indentificador único de SKU de cada Producto -->
-                <input type="text" id="productoSku" required placeholder="Ejemplo: BK-001"
+                <input type="text" id="productSku" required placeholder="Ejemplo: BK-001">
             </div>
         </form>
 
@@ -44,7 +44,7 @@
 
         <div class="form-group"> <!-- GRUPO: Comentario -->
             <label for="comment">Comentario</label>
-            <input id="comment" rows="4" required placeholder="Opinion de Usuario"
+            <input id="comment" rows="4" required placeholder="Opinion de Usuario">
         </div>
 
         <!-- Botón de Envío -->
@@ -82,12 +82,12 @@
         <!-- Promedio de calificación -->
         <!-- Distribución de estrellas y total de Reseñas -->
          <h3>Estadísticas:</h3>
-         <div id="ratingStats">
+         <div id="ratingStats"></div>
 
         <!-- SECCIÓN: Lista de Reseñas -->
          <h3>Lista de Reseñas</h3>
-        
-         <p class="empty">Cargando Reseñas...</p>
+         <div id="reviewList"></div>
+            <p class="empty">Cargando Reseñas...</p>
          </div>
 
          <div id="pagination">
@@ -98,7 +98,7 @@
     <!-- ARCHIVO: app.js -->
     <!-- Funcionalidades: Manejo de formulario, Validación de Datos-->
     <!-- Filtrado y Carga de Reseñas, Cálculo de estadísticas, Gestión de Paginación -->
-    <script src="app.js"></script>
+    <script src="/js/app.js"></script>
     
 </body>
 </html>
