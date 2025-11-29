@@ -1,10 +1,9 @@
 // Endpoint API
-const API_BASE_URL = '/reviews';
+const API_BASE_URL = 'http://localhost:8080/reviews';
 
 // Estado de la aplicación
 let currentPage = 0;
 const pageSize = 5;
-const API_KEY = 'clave_grupo8_keyPi';
 
 /*
 
@@ -63,7 +62,6 @@ async function handleReviewSubmit(e) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-API-KEY': API_KEY
             },
             body: JSON.stringify(reviewData)
         });
@@ -101,13 +99,13 @@ async function loadReviews() {
         if (response.status === 200) {
             const reviews = await response.json();
             displayReviews(reviews);
-            updatePagination(reviews.length >= pageSize);
+            updatePagination();
         } else if (response.status === 404) {
-            // showAlert('Producto no encontrado', 'error');
+            showAlert('Producto no encontrado', 'error');
             reviewsList.innerHTML = '<div class="empty"><p>Producto no encontrado</p></div>';
         }
     } catch (error) {
-        // showAlert('Error al cargar reseñas', 'error');
+        showAlert('Error al cargar reseñas', 'error');
     }
 }
 
@@ -126,7 +124,7 @@ function displayReviews(reviews) {
             </div>
             <div class="review-rating">Rating: ${review.rating}/5</div>
             <div class="review-comment">${review.comentario}</div>
-            <button class="delete-btn" onclick="deleteReview(${review.id})">
+            <button class="delete-btn" onclick="deleteReview('${review.id}')">
                 Eliminar
             </button>
         </div>
@@ -169,10 +167,7 @@ async function deleteReview(reviewId) {
     
     try {
         const response = await fetch(`${API_BASE_URL}/${reviewId}`, {
-            method: 'DELETE',
-            headers: {
-                'X-API-KEY': API_KEY
-            }
+            method: 'DELETE'
         });
         
         if (response.status === 204) {
@@ -188,12 +183,14 @@ async function deleteReview(reviewId) {
 }
 
 // Actualizar paginación
-// Actualizar paginación
-function updatePagination(hasMore) {
+function updatePagination(response) {
+    // Si la API devuelve un objeto de paginación
+    const isLastPage = response.isLast || false;
+
     pagination.innerHTML = `
         <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 0 ? 'disabled' : ''}>Anterior</button>
         <span>Página ${currentPage + 1}</span>
-        <button class="page-btn" onclick="changePage(${currentPage + 1})" ${!hasMore ? 'disabled' : ''}>Siguiente</button>
+        <button class="page-btn" onclick="changePage(${currentPage + 1})" ${isLastPage ? 'disabled' : ''}>Siguiente</button>
     `;
 }
 
