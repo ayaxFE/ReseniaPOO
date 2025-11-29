@@ -27,7 +27,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findByProductoSkuOrderByCreatedAtDesc(String productoSku, Pageable pageable);
 
     List<Review> findByProductoSkuAndRatingGreaterThanEqualOrderByCreatedAtDesc(String productoSku, Integer minRating,
-            org.springframework.data.domain.Pageable pageable);
+        Pageable pageable);
 
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.productoSku = ?1")
     Double getAverageRatingByProductoSku(String productoSku);
