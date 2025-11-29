@@ -14,6 +14,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "reviews")
 
+/*
+ * la funcion del Review es la de almacenar las reseñas de los productos
+ * la entidad Review tiene los siguientes atributos:
+ * id: identificador de la reseña
+ * productoSku: identificador del producto
+ * usuarioId: identificador del usuario
+ * rating: calificacion de la reseña
+ * comentario: texto de la reseña
+ * createdAt: fecha de creacion de la reseña
+ */
 public class Review {
 
     @Id
@@ -36,12 +46,11 @@ public class Review {
     @JsonProperty("creadaEn")
     private Timestamp createdAt;
 
-    // constructor, getters y setters
-
     // constructor vacio para que JPA pueda crear instancias de la entidad Review
     public Review() {
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }

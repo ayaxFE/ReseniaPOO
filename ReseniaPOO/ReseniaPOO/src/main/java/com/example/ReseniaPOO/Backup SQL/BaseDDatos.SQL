@@ -5,9 +5,10 @@ CREATE TABLE reviews (
   id INT AUTO_INCREMENT PRIMARY KEY,
   producto_sku VARCHAR(255) NOT NULL,
   usuario_id VARCHAR(255) NOT NULL,
-  rating INT NOT NULL,
+  rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
   comentario TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY unique_review (producto_sku, usuario_id)
 );
 
 -- 3. INSERTAR los datos de prueba

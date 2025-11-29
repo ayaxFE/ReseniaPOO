@@ -11,10 +11,13 @@ import com.example.ReseniaPOO.model.Review;
 
 // se indica que aca tenemos el repositorio de la base de datos 
 @Repository
-// esta es la interface que extiende de JpaRepository que es la interface que
-// proporciona Spring Data JPA para realizar
-// operaciones CRUD en la base de datos como insertar, actualizar, eliminar y
-// consultar
+
+/*
+ * esta es la interface que extiende de JpaRepository que es la interface que
+ * proporciona Spring Data JPA para realizar
+ * operaciones CRUD en la base de datos como insertar, actualizar, eliminar y
+ * consultar
+ */
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     // indica si ya hay una reseña existente de un usuario para un producto
@@ -33,8 +36,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     long countByProductoSku(String productoSku);
 }
 
-// el Repository es un componente que se encarga de interactuar con la base de
-// datos
-// en resumen define los endpoint para obtener las reseñas de un producto
-// ayudandonos con lo que es las operaciones CRUD mencionadas en la presentacion
-// Spring Boot
+/*
+ * el Repository es un componente que se encarga de interactuar con la base de
+ * datos
+ * en resumen define los endpoint para obtener las reseñas de un producto
+ * ayudandonos con lo que es las operaciones CRUD mencionadas en la presentacion
+ * Spring Boot
+ */

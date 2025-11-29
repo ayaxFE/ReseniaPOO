@@ -15,6 +15,15 @@ import com.example.ReseniaPOO.repository.ReviewRepository;
 
 // anotacion que se usa para decir que esta es la parte de Service del Spring Boot
 @Service
+
+/*
+ * la funcion del ReviewService es la de gestionar las reseñas de los productos
+ * la clase ReviewService tiene los siguientes metodos:
+ * createReview: crea una reseña
+ * getReviews: obtiene las reseñas de un producto
+ * getAverageRating: obtiene el rating promedio de un producto
+ * deleteReview: elimina una reseña
+ */
 public class ReviewService {
 
     @Autowired

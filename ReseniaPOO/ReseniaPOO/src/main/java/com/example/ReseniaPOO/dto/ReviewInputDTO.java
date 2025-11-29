@@ -8,6 +8,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+/*en este DTO se definen los campos que se van a recibir para crear una reseña
+*
+* los campos que se van a recibir son el productoSku, usuarioId, rating y comentario 
+* el productoSku es el identificador del producto
+* el usuarioId es el identificador del usuario
+* el rating es el valor que se le da a la reseña
+* el comentario es el texto que se le da a la reseña
+*/
 public class ReviewInputDTO {
 
     // evaluamos que el productoSku ingresado no sea nulo o vacio
@@ -25,7 +33,6 @@ public class ReviewInputDTO {
     @Max(value = 5, message = "Rating debe ser máximo 5")
 
     private Integer rating;
-
     private String comentario;
 
     // Getters y Setters

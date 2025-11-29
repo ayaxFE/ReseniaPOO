@@ -1,5 +1,13 @@
 package com.example.ReseniaPOO.dto;
-// DTO para la respuesta del rating promedio y cantidad de reviews de un producto
+
+/* 
+* En este DTO se define el Rating Response que es el rating promedio y la cantidad de reseñas para un producto
+* los atributos que se van a recibir son el sku, promedio y cantidad
+* el sku es el identificador del producto
+* el promedio es el rating promedio del producto
+* la cantidad es la cantidad de reseñas del producto
+*/
+
 public class RatingResponseDTO {
     // inicializamos los atributos del DTO
     private String sku;
@@ -13,32 +21,32 @@ public class RatingResponseDTO {
         this.cantidad = cantidad;
     }
 
-    //Getters y Setters
+    // Getters y Setters
 
-    public String getSku() { 
-        return sku; 
+    public String getSku() {
+        return sku;
     }
-    
-    public void setSku(String sku) { 
+
+    public void setSku(String sku) {
         // Asignamos el valor recibido al atributo sku
-        this.sku = sku; 
+        this.sku = sku;
     }
 
-    public Double getPromedio() { 
-        return promedio; 
+    public Double getPromedio() {
+        return promedio;
     }
 
-    public void setPromedio(Double promedio) { 
+    public void setPromedio(Double promedio) {
         // Asignamos el valor recibido al atributo promedio
-        this.promedio = promedio; 
+        this.promedio = promedio;
     }
 
-    public long getCantidad() { 
-        return cantidad; 
+    public long getCantidad() {
+        return cantidad;
     }
 
-    public void setCantidad(long cantidad) { 
+    public void setCantidad(long cantidad) {
         // Asignamos el valor recibido al atributo cantidad
-        this.cantidad = cantidad; 
+        this.cantidad = cantidad;
     }
 }
