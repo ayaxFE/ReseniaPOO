@@ -48,7 +48,7 @@ public class ReviewService {
     /**
      * Lógica para 7.2 Listar Reseñas
      * aca podemos obtener las reseñas de un producto específico, con opción de
-     * filtrar por rating mínimo y paginación
+     * filtrar por rating mínimo y pagi nación
      * Obtener reseñas de un producto específico con filtros y paginación
      */
     public List<Review> getReviews(String sku, Integer minRating, int page, int pageSize) {
