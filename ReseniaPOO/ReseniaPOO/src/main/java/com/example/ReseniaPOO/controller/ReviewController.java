@@ -2,17 +2,24 @@ package com.example.ReseniaPOO.controller;
 
 //importamos librerias como HashMap, Map, List
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
-// Importamos Autowired
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-//importamos librerias como RatingResponseDTO, ReviewInputDTO, Review, ReviewService
 import com.example.ReseniaPOO.dto.RatingResponseDTO;
 import com.example.ReseniaPOO.dto.ReviewInputDTO;
 import com.example.ReseniaPOO.model.Review;

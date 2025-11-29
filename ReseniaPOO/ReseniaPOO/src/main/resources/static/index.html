@@ -6,7 +6,7 @@
     <meta charset="UTF-8"> <!-- Codificación de caracteres para soportar Español -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración Responsive Movil -->
     <title>Sistema de Reseñas - GRUPO N°3</title>
-    <link rel="stylesheet" href="stryles.css">  <!-- Archivo de Diseño CSS -->
+    <link rel="stylesheet" href="/css/styles.css">  <!-- Archivo de Diseño CSS -->
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
 
          <!-- Muestra alertas de éxito, error o inforamción -->
-        <div id="alerContainer">
+        <div id="alertContainer">
         </div>
 
         <!-- SECCIÓN: Formulario de creación de Reseñas (Captura y Envía Reseñas) -->
@@ -28,9 +28,8 @@
         <form id="reviewForm">
             <div class="form-group"> <!-- GRUPO: SKU del Producto -->
                 <label for="productSku"> SKU del Producto</label> <!-- Indentificador único de SKU de cada Producto -->
-                <input type="text" id="productoSku" required placeholder="Ejemplo: BK-001"
+                <input type="text" id="productSku" required placeholder="Ejemplo: BK-001">
             </div>
-        </form>
 
         <div class="form-group"> <!-- GRUPO: ID de Usuario -->
             <label for="userId">ID de Usuario (Anti-Duplicidad): </label> <!-- Evita múltiples reseñas del mismo Usuario -->
@@ -39,12 +38,14 @@
         
         <div class="form-group"> <!-- GRUPO: Clasificación -->
             <label for="rating"> Calificación (1 - 5 Estrellas):</label>
-            <input type="number" id="rating" reting min="1" max="5" value="5">
+            <!-- CORREGIDO: Cambiado "reting" por "min" -->
+            <input type="number" id="rating" min="1" max="5" value="5" required>
         </div>
 
         <div class="form-group"> <!-- GRUPO: Comentario -->
             <label for="comment">Comentario</label>
-            <input id="comment" rows="4" required placeholder="Opinion de Usuario"
+            <!-- CORREGIDO: Cambiado input por textarea para comentarios largos -->
+            <textarea id="comment" rows="4" required placeholder="Opinión de Usuario"></textarea>
         </div>
 
         <!-- Botón de Envío -->
@@ -58,7 +59,7 @@
          <div class="controls"> <!-- Controles de filtrado y búsqueda -->
             <div class="filter-group">
                 <label for="productFilter">Filtrar por SKU:</label> <!-- Filtro específico de SKUs -->
-                <input type="text" id="productFilter" placeholder="Ejemplo: NK-001" value="BK-001">
+                <input type="text" id="productFilter" placeholder="Ejemplo: BK-001" value="BK-001">
             </div>
 
             <div class="filter-group"> <!-- FILTRO POR RATING MÍNIMO -->
@@ -82,12 +83,13 @@
         <!-- Promedio de calificación -->
         <!-- Distribución de estrellas y total de Reseñas -->
          <h3>Estadísticas:</h3>
-         <div id="ratingStats">
+         <div id="ratingStats"></div>
 
         <!-- SECCIÓN: Lista de Reseñas -->
          <h3>Lista de Reseñas</h3>
-        
-         <p class="empty">Cargando Reseñas...</p>
+         <!-- CORREGIDO: Cambiado id a "reviewsList" para coincidir con JavaScript y eliminado div extra -->
+         <div id="reviewsList">
+            <p class="empty">Cargando Reseñas...</p>
          </div>
 
          <div id="pagination">
@@ -98,7 +100,7 @@
     <!-- ARCHIVO: app.js -->
     <!-- Funcionalidades: Manejo de formulario, Validación de Datos-->
     <!-- Filtrado y Carga de Reseñas, Cálculo de estadísticas, Gestión de Paginación -->
-    <script src="app.js"></script>
+    <script src="/js/app.js"></script>
     
 </body>
 </html>

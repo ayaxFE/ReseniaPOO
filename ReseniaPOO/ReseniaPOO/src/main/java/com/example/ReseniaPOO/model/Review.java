@@ -1,8 +1,11 @@
 package com.example.ReseniaPOO.model;
 
 import java.sql.Timestamp;
+
 import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +45,7 @@ public class Review {
     // es usado por Spring Data JPA para mapear el campo createdAt a la columna
     // "createdAt" en la tabla "reviews"
     @CreationTimestamp
-    @Column(updatable = false, name = "createdAt")
+    @Column(updatable = false, name = "created_at")
     @JsonProperty("creadaEn")
     private Timestamp createdAt;
 

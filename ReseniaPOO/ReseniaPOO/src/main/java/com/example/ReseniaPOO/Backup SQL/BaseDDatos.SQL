@@ -1,22 +1,29 @@
+-- 1. Crear la base de datos si no existe
+CREATE DATABASE IF NOT EXISTS bd_reviews;
+USE bd_reviews;
 
--- 1 En este sector se formara el codigo principal de MYSQL para la gestion de reseñas de productos.
-CREATE TABLE reviews (
-  -- 2. DEFINIR la estructura de la tabla de reseñas
+-- 2. Crear la tabla de reseñas
+CREATE TABLE IF NOT EXISTS reviews (
   id INT AUTO_INCREMENT PRIMARY KEY,
   producto_sku VARCHAR(255) NOT NULL,
   usuario_id VARCHAR(255) NOT NULL,
-  rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  rating INT NOT NULL,
   comentario TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE KEY unique_review (producto_sku, usuario_id)
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. INSERTAR los datos de prueba
+-- 3. Vaciar la tabla (corregido: nombre correcto es 'reviews')
+TRUNCATE TABLE reviews;
+
+-- 4. Insertar datos de prueba
 INSERT INTO reviews (producto_sku, usuario_id, rating, comentario) 
-VALUES ('BK-001', 'user-123', 5, '¡Este producto es excelente!');
+VALUES ('BK-001', 'Facundo Miranda', 5, '¡Este producto es excelente!');
 
 INSERT INTO reviews (producto_sku, usuario_id, rating, comentario) 
-VALUES ('BK-001', 'user-456', 3, 'No está mal, pero podría mejorar.');
+VALUES ('LK-002', 'Facundo de Renzo', 3, 'No está mal, pero podría mejorar.');
 
 INSERT INTO reviews (producto_sku, usuario_id, rating, comentario) 
-VALUES ('PROD-ABC', 'user-789', 4, 'Buena relación precio-calidad.');
+VALUES ('LK-002', 'Facundo Aguilar', 4, 'Buena relación precio-calidad.');
+
+INSERT INTO reviews (producto_sku, usuario_id, rating, comentario) 
+VALUES ('CK-002', 'Demian Farias', 2, '¡Excelente Producto!');
