@@ -24,8 +24,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     boolean existsByProductoSkuAndUsuarioId(String productoSku, String usuarioId);
 
     // esta linea busca la reseña de un producto ordenada por fecha de creacion
+    @Query("SELECT r FROM Review r WHERE r.productoSku = ?1")
     List<Review> findByProductoSkuOrderByCreatedAtDesc(String productoSku, Pageable pageable);
 
+    @Query("SELECT r FROM Review r WHERE r.productoSku = ?1 AND r.rating >= ?2")
     List<Review> findByProductoSkuAndRatingGreaterThanEqualOrderByCreatedAtDesc(String productoSku, Integer minRating,
             org.springframework.data.domain.Pageable pageable);
 

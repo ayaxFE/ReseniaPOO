@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <!-- METADATOS DEL DOCUMENTO -->
     <meta charset="UTF-8"> <!-- Codificación de caracteres para soportar Español -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración Responsive Movil -->
     <title>Sistema de Reseñas - GRUPO N°3</title>
-    <link rel="stylesheet" href="/css/styles.css">  <!-- Archivo de Diseño CSS -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Archivo de Diseño CSS -->
 </head>
+
 <body>
 
-     <!-- Contenedor Principal -->
+    <!-- Contenedor Principal -->
     <div class="container">
 
-         <!-- Encabezado Principal -->
+        <!-- Encabezado Principal -->
         <h1>Sistemas de Reseñas y Reputación</h1>
 
 
-         <!-- Muestra alertas de éxito, error o inforamción -->
+        <!-- Muestra alertas de éxito, error o inforamción -->
         <div id="alertContainer">
         </div>
 
@@ -30,32 +32,31 @@
                 <label for="productSku"> SKU del Producto</label> <!-- Indentificador único de SKU de cada Producto -->
                 <input type="text" id="productSku" required placeholder="Ejemplo: BK-001">
             </div>
+
+            <div class="form-group"> <!-- GRUPO: ID de Usuario -->
+                <label for="userId">ID de Usuario (Anti-Duplicidad): </label>
+                <!-- Evita múltiples reseñas del mismo Usuario -->
+                <input type="text" id="userId" required placeholder="Ejemplo: 2f4d.. (UserID)">
+            </div>
+
+            <div class="form-group"> <!-- GRUPO: Clasificación -->
+                <label for="rating"> Calificación (1 - 5 Estrellas):</label>
+                <input type="number" id="rating" reting min="1" max="5" value="5">
+            </div>
+
+            <div class="form-group"> <!-- GRUPO: Comentario -->
+                <label for="comment">Comentario</label>
+                <textarea rea id="comment" rows="4" required placeholder="Opinion de Usuario"></textarea>
+            </div>
+
+            <!-- Botón de Envío -->
+            <button type="submit">Enviar Reseña</button>
         </form>
-
-        <div class="form-group"> <!-- GRUPO: ID de Usuario -->
-            <label for="userId">ID de Usuario (Anti-Duplicidad): </label> <!-- Evita múltiples reseñas del mismo Usuario -->
-            <input type="text" id="userId" required placeholder="Ejemplo: 2f4d.. (UserID)">
-        </div>
-        
-        <div class="form-group"> <!-- GRUPO: Clasificación -->
-            <label for="rating"> Calificación (1 - 5 Estrellas):</label>
-            <input type="number" id="rating" reting min="1" max="5" value="5">
-        </div>
-
-        <div class="form-group"> <!-- GRUPO: Comentario -->
-            <label for="comment">Comentario</label>
-            <input id="comment" rows="4" required placeholder="Opinion de Usuario">
-        </div>
-
-        <!-- Botón de Envío -->
-        <button type="submit">Enviar Reseña</button>
-        </form>
-
         <hr>
 
         <!-- SECCIÓN: Visualizador de Reseñas Existentes -->
-         <h2>Reseñas del Producto</h2>
-         <div class="controls"> <!-- Controles de filtrado y búsqueda -->
+        <h2>Reseñas del Producto</h2>
+        <div class="controls"> <!-- Controles de filtrado y búsqueda -->
             <div class="filter-group">
                 <label for="productFilter">Filtrar por SKU:</label> <!-- Filtro específico de SKUs -->
                 <input type="text" id="productFilter" placeholder="Ejemplo: NK-001" value="BK-001">
@@ -76,29 +77,28 @@
             <!-- Botón para aplicar Filtros -->
             <!-- Dispara la carga de reseñas con los filtros aplicados -->
             <button id="loadReviewsBtn">Cargar Reseñas</button>
-         </div>
+        </div>
 
         <!-- SECCIÓN: Estadísticas -->
         <!-- Promedio de calificación -->
         <!-- Distribución de estrellas y total de Reseñas -->
-         <h3>Estadísticas:</h3>
-         <div id="ratingStats"></div>
+        <h3>Estadísticas:</h3>
+        <div id="ratingStats"></div>
 
         <!-- SECCIÓN: Lista de Reseñas -->
-         <h3>Lista de Reseñas</h3>
-         <div id="reviewList"></div>
-            <p class="empty">Cargando Reseñas...</p>
-         </div>
-
-         <div id="pagination">
-         </div>
+        <h3>Lista de Reseñas</h3>
+        <div id="reviewList"></div>
     </div>
-    
-    
+    <div id="pagination">
+    </div>
+    </div>
+
+
     <!-- ARCHIVO: app.js -->
     <!-- Funcionalidades: Manejo de formulario, Validación de Datos-->
     <!-- Filtrado y Carga de Reseñas, Cálculo de estadísticas, Gestión de Paginación -->
     <script src="/js/app.js"></script>
-    
+
 </body>
+
 </html>
