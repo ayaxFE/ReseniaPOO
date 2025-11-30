@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS reviews (
 
 TRUNCATE TABLE reviews;
 
--- 3. Insertamos los datos de prueba
 INSERT INTO reviews (producto_sku, usuario_id, rating, comentario) 
 VALUES ('BK-001', 'Facundo Miranda', 5, '¡Este producto es excelente!');
 
