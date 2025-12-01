@@ -2,6 +2,7 @@ package com.example.ReseniaPOO.controller;
 
 //importamos librerias como HashMap, Map, List
 import java.util.HashMap;
+import java.util.LinkedHashMap; // Agregado para el orden del JSON (id, sku, etc)
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.ReseniaPOO.dto.RatingResponseDTO;
 import com.example.ReseniaPOO.dto.ReviewInputDTO;
 import com.example.ReseniaPOO.model.Review;
+import com.example.ReseniaPOO.repository.ReviewRepository; // Necesario para el listado general
 import com.example.ReseniaPOO.service.ReviewService;
 
 // aca esta el controlador que maneja las peticiones HTTP
@@ -39,6 +41,9 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+
+    @Autowired
+    private ReviewRepository reviewRepository; // Agregado para poder listar todo en /reviews
 
     // esta es la clave que se usara para validar las peticiones HTTP para X-API-Key
     private static final String MI_CLAVE_SECRETA = "clave_grupo8_keyPi";
@@ -67,16 +72,35 @@ public class ReviewController {
         }
 
         try {
-            // aca se crea la reseña
+            // aca se crea la reseña en la base de datos
             Review newReview = reviewService.createReview(reviewInput);
+
+            // --- MODIFICACIÓN PARA CUMPLIR EL FORMATO "rev12" ---
+            // Construimos un mapa manual para que el JSON salga con "rev" y sin usuarioId
+            Map<String, Object> respuesta = new LinkedHashMap<>();
+            respuesta.put("id", "rev" + newReview.getId());
+            respuesta.put("productoSku", newReview.getProductoSku());
+            respuesta.put("rating", newReview.getRating());
+            respuesta.put("comentario", newReview.getComentario());
+            respuesta.put("creadaEn", newReview.getCreatedAt().toString());
+
             // se retorna la reseña creada con el codigo 201 que significa que fue creado
-            // correctamente
-            return new ResponseEntity<>(newReview, HttpStatus.CREATED);
+            // correctamente (devuelve el mapa personalizado)
+            return new ResponseEntity<>(respuesta, HttpStatus.CREATED);
 
         } catch (ResponseStatusException e) {
             // se captura las reseñas duplicadas (error 409)
             return generarError((HttpStatus) e.getStatusCode(), e.getReason());
         }
+    }
+
+    /*
+     * Endpoint EXTRA (Agregado para ver todas las reseñas al entrar a /reviews)
+     * Esto soluciona el error 405 y permite ver el listado general
+     */
+    @GetMapping
+    public ResponseEntity<List<Review>> listarTodas() {
+        return ResponseEntity.ok(reviewRepository.findAll());
     }
 
     /*
@@ -177,8 +201,7 @@ public class ReviewController {
  * parámetros que el endpoint debe recibir. citado:
  * https://localhorse.net/article/como-manejar-solicitudes-get-con-getmapping-en
  * -spring-boot
- * 
- * @PostMapping es una anotación específica de Spring utilizada para mapear
+ * * @PostMapping es una anotación específica de Spring utilizada para mapear
  * solicitudes HTTP POST en métodos
  * de un controlador. Esta anotación simplifica la configuración de rutas y es
  * útil para operaciones que
