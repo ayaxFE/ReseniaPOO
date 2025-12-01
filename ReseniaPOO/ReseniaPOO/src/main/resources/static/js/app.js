@@ -1,20 +1,12 @@
 // Endpoint API
-const API_BASE_URL = 'http://localhost:8080/reviews';
+// --- CAMBIO CRÍTICO: Usamos ruta relativa para que funcione en el servidor ---
+const API_BASE_URL = '/reviews'; 
 const API_KEY = 'clave_grupo8_keyPi';
+
 // Estado de la aplicación
 let currentPage = 0;
 const pageSize = 5;
 
-/*
-
-- reviewForm: Formulario para crear nuevas reseñas
-- reviewList: Contenedor de la lista de reseñas
-- pagination: Controles de paginación
-- ratingInput: Campo de calificación (1-5 Estrellas)
-- Filtros (productFilter, minRating)
-- Componente UI: alertContainer, ratingStats
-
-*/
 const reviewForm = document.getElementById('reviewForm');
 const reviewList = document.getElementById('reviewList');
 const pagination = document.getElementById('pagination');
@@ -38,18 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Enviar nueva reseña
-
-    /*
-    handleReviewSubmit
-    1 - Prevenir envío default del formulario
-    2 - Recopila datos: SKU, Usuario, Rating, Comentario
-    3 - Envía el POST a la API
-    4 - Maneja respuestas:
-        - 201: Muestras alerta => Resetea formulario => Recarga los datos DB
-        - 422: Rating Inválido => Erorr de validación
-        - 409: Reseña duplicada => Usuario que ya reseño el Producto
-    */
-
     async function handleReviewSubmit(e) {
         e.preventDefault();
 
@@ -61,11 +41,12 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         try {
+            // Nota: Al usar ruta relativa, el navegador usa el dominio actual automáticamente
             const response = await fetch(API_BASE_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-API-KEY': API_KEY
+                    'X-API-Key': API_KEY // Clave de seguridad
                 },
                 body: JSON.stringify(reviewData)
             });
@@ -79,11 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 showAlert('Error: El rating debe estar entre 1 y 5 estrellas', 'error');
             } else if (response.status === 409) {
                 showAlert('Error: Ya existe una reseña de este usuario para este producto', 'error');
+            } else if (response.status === 401) {
+                showAlert('Error: No autorizado (API Key incorrecta)', 'error');
             } else {
                 showAlert('Error al crear la reseña', 'error');
             }
         } catch (error) {
-            showAlert('Error de conexión', 'error');
+            console.error(error);
+            showAlert('Error de conexión con el servidor', 'error');
         }
     }
 
@@ -109,9 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (response.status === 404) {
                 showAlert('Producto no encontrado', 'error');
                 reviewList.innerHTML = '<div class="empty"><p>Producto no encontrado</p></div>';
-                pagination.innerHTML = ''; // Limpiar paginación
+                pagination.innerHTML = ''; 
             } else {
-                // si encuentra otro error limpia el "Cargando"
                 reviewList.innerHTML = '<div class="empty"><p>No se encontraron resultados.</p></div>';
             }
         } catch (error) {
@@ -120,9 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
             reviewList.innerHTML = '<div class="empty"><p>No se pudieron cargar las reseñas.</p></div>';
         }
     }
-
-
-
 
     // Mostrar reseñas en la lista
     function displayReviews(reviews) {
@@ -146,11 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     `).join('');
     }
 
-    /*
-    Cargar estadísticas de rating
-    Endpoint: /reviews/{sku}/rating
-    */
-
+    // Cargar estadísticas de rating
     async function loadRatingStats() {
         const sku = productFilter.value || 'BK-001';
 
@@ -166,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
     // Mostrar estadísticas de rating
     function displayRatingStats(stats) {
         ratingStats.innerHTML = `
@@ -174,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="count">${stats.cantidad || 0} reseñas</div>
             `;
     }
-
 
     // Eliminar reseña
     window.deleteReview = async function (reviewId) {
@@ -196,6 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 loadRatingStats();
             } else if (response.status === 404) {
                 showAlert('Reseña no encontrada', 'error');
+            } else if (response.status === 401) {
+                showAlert('No autorizado para eliminar', 'error');
             }
         } catch (error) {
             showAlert('Error al eliminar reseña', 'error');
